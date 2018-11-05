@@ -1,6 +1,8 @@
-# ![logo](/docs/branding.bmp) Telemetry Analytics API
+# ![logo](/docs/branding.bmp) Telemetry Analytics Data Persistence
 
 ![Build Status](https://mat-ocs.visualstudio.com/Telemetry%20Analytics%20Platform/_apis/build/status/MAT.TAP.TelemetryAnalytics.API/MAT.TAP.TelemetryAnalytics.API%20-%20Pull%20Request%20Gateway?branchName=develop)
+
+Telemetry data and metadata about sessions are saved to various storage implementations such as SqlRace and InfluxDb and relational databases. This article discusses saving telemetry data to InfluxDb as time-series data and metadata to MSSQL Server.
 
 ## InfluxDb Writer
 
