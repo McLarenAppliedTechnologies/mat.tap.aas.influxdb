@@ -8,6 +8,24 @@ Telemetry data and metadata about sessions are saved to various storage implemen
 
 InfluxDb writer subscribes to message brokers and saves telemetry data and session metadata in real-time to time-series and relational databases respectively. InfluxDb Writer is platform-independent and hence can be deployed on Windows or Unix-based systems as a service but **we strongly recommend deploying InfluxDb writer and InfluxDb on one Linux VM. InfluxDb performs better on Linux and by deploying it on one machine together with service you reduce unnecessary network bandwidth between those services.**
 
+### Deployment
+#### .NET Core runtime
+First you need to install .NET Core 2.1 runtime. You can donwload it [here](https://www.microsoft.com/net/download/dotnet-core/2.1). Example for Ubuntu 18.04 LTE: 
+
+```
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+
+sudo apt-get --yes install apt-transport-https
+sudo apt-get update
+sudo apt-get --yes install aspnetcore-runtime-2.1
+```
+
+#### Daemon installation
+One the examples how to run InfluxDb writer is systemd daemon service. In the release bundle, there is a shell script **** for daemon installation.
+
+
+
 #### Basic usage
 
 In order to use InfluxDb writer, add the relevant configuration in `config.json` file and start service using
