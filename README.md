@@ -22,9 +22,31 @@ sudo apt-get --yes install aspnetcore-runtime-2.1
 ```
 
 #### Daemon installation
-One the examples how to run InfluxDb writer is systemd daemon service. In the release bundle, there is a shell script **** for daemon installation.
+One the examples how to run InfluxDb writer is systemd daemon service. In the release bundle, there is a shell script **daemon_deploy.sh** for daemon installation. 
 
+Before you run it, execute following commands:
+```
+awk 'BEGIN{RS="^$";ORS="";getline;gsub("\r","");print>ARGV[1]}' daemon_deploy.sh
+sudo chmod 777 daemon_deploy.sh
+```
 
+Then run:
+```
+./daemon_deploy.sh
+```
+
+You can verify it by:
+
+```
+journalctl --unit MAT.TAP.AAS.InfluxDb.Writer.service --follow -n 100
+```
+
+or start and stop by 
+
+```
+sudo systemctl stop MAT.TAP.AAS.InfluxDb.Writer 
+sudo systemctl start MAT.TAP.AAS.InfluxDb.Writer 
+```
 
 #### Basic usage
 
