@@ -48,6 +48,8 @@ sudo systemctl stop MAT.TAP.AAS.InfluxDb.Writer
 sudo systemctl start MAT.TAP.AAS.InfluxDb.Writer 
 ```
 
+or configure your config in /opt/MAT.TAP.AAS.InfluxDb.Writer/config.json
+
 #### Basic usage
 
 In order to use InfluxDb writer, add the relevant configuration in `config.json` file and start service using
