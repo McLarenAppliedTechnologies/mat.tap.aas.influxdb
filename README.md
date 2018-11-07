@@ -44,8 +44,8 @@ journalctl --unit MAT.TAP.AAS.InfluxDb.Writer.service --follow -n 100
 or start and stop by 
 
 ```
-sudo systemctl stop MAT.TAP.AAS.InfluxDb.Writer 
-sudo systemctl start MAT.TAP.AAS.InfluxDb.Writer 
+sudo systemctl stop MAT.TAP.AAS.InfluxDb.Writer.service
+sudo systemctl start MAT.TAP.AAS.InfluxDb.Writer.service
 ```
 
 or configure your config in /opt/MAT.TAP.AAS.InfluxDb.Writer/config.json
