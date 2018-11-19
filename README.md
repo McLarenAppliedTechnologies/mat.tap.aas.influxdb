@@ -2,6 +2,21 @@
 
 Telemetry data and metadata about sessions are saved to various storage implementations such as SqlRace and InfluxDb and relational databases. This article discusses saving telemetry data to InfluxDb as time-series data and metadata to MSSQL Server.
 
+## InfluxDb installation
+**we strongly recommend deploying InfluxDb writer and InfluxDb on one Linux VM. InfluxDb performs better on Linux and by deploying it on one machine together with service you reduce unnecessary network bandwidth between those services.**
+
+Download and install InfluxDb following instructions [here](https://portal.influxdata.com/downloads).
+
+**Change index-version in influx.config (in linux is located in /etc/influxdb/influxdb.config)**:
+
+```
+# The type of shard index to use for new shards.  The default is an in-memory index that is
+# recreated at startup.  A value of "tsi1" will use a disk based index that supports higher
+# cardinality datasets.
+index-version = "tsi1"
+```
+
+
 ## InfluxDb Writer
 
 InfluxDb writer subscribes to message brokers and saves telemetry data and session metadata in real-time to time-series and relational databases respectively. InfluxDb Writer is platform-independent and hence can be deployed on Windows or Unix-based systems as a service but **we strongly recommend deploying InfluxDb writer and InfluxDb on one Linux VM. InfluxDb performs better on Linux and by deploying it on one machine together with service you reduce unnecessary network bandwidth between those services.**
@@ -46,7 +61,9 @@ sudo systemctl stop MAT.TAP.AAS.InfluxDb.Writer.service
 sudo systemctl start MAT.TAP.AAS.InfluxDb.Writer.service
 ```
 
-or configure your config in /opt/MAT.TAP.AAS.InfluxDb.Writer/config.json
+or **configure your config in /opt/MAT.TAP.AAS.InfluxDb.Writer/config.json**.
+
+**Please note that after you change settings in config.json in opt folder you need to restart service.**
 
 #### Basic usage
 
