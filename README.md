@@ -3,7 +3,7 @@
 Telemetry data and metadata about sessions are saved to various storage implementations such as SqlRace and InfluxDb and relational databases. This article discusses saving telemetry data to InfluxDb as time-series data and metadata to MSSQL Server.
 
 ## InfluxDb installation
-**we strongly recommend deploying InfluxDb writer and InfluxDb on one Linux VM. InfluxDb performs better on Linux and by deploying it on one machine together with service you reduce unnecessary network bandwidth between those services.**
+**We strongly recommend deploying InfluxDb writer and InfluxDb on one Linux VM. InfluxDb performs better on Linux and by deploying it on one machine together with service you reduce unnecessary network bandwidth between those services.**
 
 Download and install InfluxDb following instructions [here](https://portal.influxdata.com/downloads).
 
