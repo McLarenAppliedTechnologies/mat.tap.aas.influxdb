@@ -17,7 +17,7 @@ index-version = "tsi1"
 ```
 
 ### Minimal requirements
-One F1 car stream of all samples minimum requirment:  
+One F1 car stream of all samples minimum requirments:  
 CPU: 8 cores  
 RAM: 16Gb  
 Disk: SSD min 15000 IOPS  
