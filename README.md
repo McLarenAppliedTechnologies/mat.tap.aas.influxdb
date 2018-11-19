@@ -18,9 +18,9 @@ index-version = "tsi1"
 
 ### Minimal requirements
 One F1 car stream of all samples minimum requirment:
-CPU: 8 cores
-RAM: 16Gb
-Disk: SSD min 15000 IOPS
+CPU: 8 cores  
+RAM: 16Gb  
+Disk: SSD min 15000 IOPS  
 
 
 ## InfluxDb Writer
