@@ -79,6 +79,7 @@ In order to use InfluxDb writer, add the relevant configuration in `config.json`
 
 A sample configuration and an explanation of settings is given below.
 
+```Json
 {
   "AppConfiguration": {
     "BrokerList": "brokerList",
@@ -110,8 +111,7 @@ A sample configuration and an explanation of settings is given below.
     }
   }
 }
-
-
+```
 - `BrokerList`: Address of the message broker cluster.
 - `DependencyUrl` and `DependencyGroup`: Settings related to ATLAS configuration and session metadata.
 - `BatchSize`: Number of telemetry samples to be saved to InfluxDb at a time.
