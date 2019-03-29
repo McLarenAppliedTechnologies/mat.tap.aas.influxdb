@@ -79,24 +79,38 @@ In order to use InfluxDb writer, add the relevant configuration in `config.json`
 
 A sample configuration and an explanation of settings is given below.
 
-    {
-        "BrokerList": "xx.xxx.x.xx",
-        "DependencyUrl": "http://[hostname/ip_address]/api/dependencies/",
-        "DependencyGroup": "[dependency group identifier]",
-        "BatchSize": 100000,
-        "ThreadCount": 5,
-        "InitializeDatabase": true,
-        "Connections": {
-            "[TopicName]": {
-            "InfluxConnections": {
-                "*": {
-                "InfluxDbUrl": "http://[hostname/ip_address]"
-                }
-            },
-            "SqlServerConnectionString": "Server=(localdb)\\MSSQLLocalDB;Initial Catalog=[DatabaseName];User Id=[Username];Password=[Password];"
-            }
+{
+  "AppConfiguration": {
+    "BrokerList": "brokerList",
+    "DependencyUrl": "http://localhost/api/dependencies/",
+    "DependencyGroup": "dev",
+    "BatchSize": 1000,
+    "ThreadCount": 5,
+    "MaxQueueSize": 1000,
+    "InitializeDatabase": true,
+    "StreamType": "Kafka", // Kafka, Mqtt
+    "Username": "",
+    "Password": ""
+  },
+  "AASConfiguration": {
+    // Used by data scientists to tag contextual events.
+    "EventTagGroup": "Tag"
+  },
+  "Connections": {
+    "TestTopic": {
+      "InfluxConnections": [
+        {
+          "Label": "*",
+          "InfluxDbUrl": "http://localhost:8086",
+          "InfluxDatabase": "Test",
+          "MeasurementName": "Test"
         }
+      ],
+      "SqlServerConnectionString": "server=10.228.5.4\\SQLEXPRESS;Initial Catalog=Test2;User Id=UserId;Password=Password"
     }
+  }
+}
+
 
 - `BrokerList`: Address of the message broker cluster.
 - `DependencyUrl` and `DependencyGroup`: Settings related to ATLAS configuration and session metadata.
