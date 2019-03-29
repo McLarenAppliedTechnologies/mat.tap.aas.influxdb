@@ -94,7 +94,6 @@ A sample configuration and an explanation of settings is given below.
     "Password": ""
   },
   "AASConfiguration": {
-    // Used by data scientists to tag contextual events.
     "EventTagGroup": "Tag"
   },
   "Connections": {
@@ -107,7 +106,7 @@ A sample configuration and an explanation of settings is given below.
           "MeasurementName": "Test"
         }
       ],
-      "SqlServerConnectionString": "server=10.228.5.4\\SQLEXPRESS;Initial Catalog=Test2;User Id=UserId;Password=Password"
+      "SqlServerConnectionString": "server=\\SQLEXPRESS;Initial Catalog=Test;User Id=UserId;Password=Password"
     }
   }
 }
