@@ -1,4 +1,4 @@
-# ![logo](/docs/branding.bmp) Telemetry Analytics Data Persistence
+# ![logo](/docs/branding.png) Telemetry Analytics Data Persistence
 
 Telemetry data and metadata about sessions are saved to various storage implementations such as SqlRace and InfluxDb and relational databases. This article discusses saving telemetry data to InfluxDb as time-series data and metadata to MSSQL Server.
 
