@@ -79,32 +79,49 @@ In order to use InfluxDb writer, add the relevant configuration in `config.json`
 
 A sample configuration and an explanation of settings is given below.
 
-    {
-        "BrokerList": "xx.xxx.x.xx",
-        "DependencyUrl": "http://[hostname/ip_address]/api/dependencies/",
-        "DependencyGroup": "[dependency group identifier]",
-        "BatchSize": 100000,
-        "ThreadCount": 5,
-        "InitializeDatabase": true,
-        "Connections": {
-            "[TopicName]": {
-            "InfluxConnections": {
-                "*": {
-                "InfluxDbUrl": "http://[hostname/ip_address]"
-                }
-            },
-            "SqlServerConnectionString": "Server=(localdb)\\MSSQLLocalDB;Initial Catalog=[DatabaseName];User Id=[Username];Password=[Password];"
-            }
+```Json
+{
+  "AppConfiguration": {
+    "BrokerList": "brokerList",
+    "DependencyUrl": "http://localhost/api/dependencies/",
+    "DependencyGroup": "dev",
+    "BatchSize": 1000,
+    "ThreadCount": 5,
+    "MaxQueueSize": 1000,
+    "InitializeDatabase": true,
+    "StreamType": "Kafka", // Kafka, Mqtt
+    "Username": "",
+    "Password": ""
+  },
+  "AASConfiguration": {
+    "EventTagGroup": "Tag"
+  },
+  "Connections": {
+    "TestTopic": {
+      "InfluxConnections": [
+        {
+          "Label": "*",
+          "InfluxDbUrl": "http://localhost:8086",
+          "InfluxDatabase": "Test",
+          "MeasurementName": "Test"
         }
+      ],
+      "SqlServerConnectionString": "server=\\SQLEXPRESS;Initial Catalog=Test;User Id=UserId;Password=Password"
     }
-
+  }
+}
+```
 - `BrokerList`: Address of the message broker cluster.
 - `DependencyUrl` and `DependencyGroup`: Settings related to ATLAS configuration and session metadata.
 - `BatchSize`: Number of telemetry samples to be saved to InfluxDb at a time.
-- `ThreadCount`: Number of processor threads to be used by the Influx Writer. A value larger than 1 can improve throughput of the writer in a machine that supports multithreading.
+- `ThreadCount`: Number of processor threads used by the Influx Writer. A value larger than 1 can improve throughput of the writer in a machine that supports multithreading.
+- `MaxQueueSize`: How many messages are processed by Influx Writer.
+- `StreamType`: Type of used stream. Options are Kafka or Mqtt. 
+- `Username`: Username used to establish a connection to either Kafka or Mqtt.
+- `Password`: Password used to establish a connection to either Kafka or Mqtt.
 - `InitializeDatabase`: True to initialize databases configured in connections section.
 - `Connections`: Contains all the database connection information organized by the topic (e.g. Kafka topics.)
-- `[TopicName]` : Change the value here depending on the message queue topic you want to subscribe to.
+- `TopicName` : Name of the topic that you want to subscribe to.
 - `InfluxConnections`: Contains all the InfluxDb connection strings. Influx writer supports multiple InfluxDb connections per topic under [labels](#label-supprt). If you plan to use just one InfluxDb instance, use asterisk symbol (*) as a wildcard key. This means, all telemetry data under the topic will be saved to InfluxDb specified in `InfluxDbUrl` regardless of the label.
 - `SqlServerConnectionString`: Connection string for session metadata relational database. Influx Writer supports one metadata connection per topic.
 
