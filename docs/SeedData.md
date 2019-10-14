@@ -6,6 +6,7 @@
 - **Seeding Data**<br>
   - [*Example*](#seed-data-example)<br>
 - [**API**](/docs/API.md)<br>
+- [**Previous Versions**](/docs/PreviousVersions.md)<br>
 
 Seeding is used to start service with a preconfigured set of streaming and topic configurations. If you wish to configure the service via API, leave ```SeedOption``` at `""`. When seeding is used it destroys any pre-existing influx writer configuration on service start, so anything configured via API will be lost. Any recorded session will remain intact.
 

@@ -11,6 +11,7 @@
   - [*Logging*](#logging)<br>
 - [**Seeding Data**](/docs/SeedData.md)<br>
 - [**API**](/docs/API.md)<br>
+- [**Previous Versions**](/docs/PreviousVersions.md)<br>
 
 
 ## InfluxDb installation
