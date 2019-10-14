@@ -5,9 +5,9 @@
 - **Installation**<br>
   - [*Influx DB Installation*](#influxdb-installation)<br>
   - [*Influx Writer prerequisites*](#influxdb-writer-prerequisites)<br>
-  - [*Influx Writer installation as a deamon*](#daemon-installation)<br>
-  - [*Influx Writer service configuration*](#service-configuration)<br>
-  - [*Run Influx Writer as a standalone*](#run-as-standalone)<br>
+  - [*Run as standalone*](#run-as-standalone)<br>
+  - [*Run as a daemon service*](#run-as-a-daemon-service)<br>
+  - [*Influx Writer configuration*](#influx-writer-configuration)<br>
   - [*Logging*](#logging)<br>
 - [**Seeding Data**](/docs/SeedData.md)<br>
 - [**API**](/docs/API.md)<br>
@@ -17,9 +17,9 @@
 ## InfluxDb installation
 **We strongly recommend deploying InfluxDb writer and InfluxDb on one Linux VM. InfluxDb performs better on Linux and by deploying it on one machine together with service you reduce unnecessary network bandwidth between those services.**
 
-Download and install InfluxDb following instructions [here](https://portal.influxdata.com/downloads).
+[Download](https://portal.influxdata.com/downloads/) latest v1.x version and install InfluxDb following instructions [here](https://docs.influxdata.com/influxdb/v1.7/introduction/installation/).
 
-**Change index-version in influx.config (in linux is located in /etc/influxdb/influxdb.config)**:
+**Change index-version in influx.conf (on Ubuntu is located at /etc/influxdb/influxdb.conf)**:
 
 ```
 # The type of shard index to use for new shards.  The default is an in-memory index that is
@@ -51,8 +51,16 @@ sudo apt-get update
 sudo apt-get --yes install aspnetcore-runtime-2.1
 ```
 
-## Daemon installation
-One the examples how to run InfluxDb writer is systemd daemon service. In the release bundle, there is a shell script **daemon_deploy.sh** for daemon installation. 
+
+## Run as standalone
+
+In order to use InfluxDb writer without running it as a service, add the relevant configuration in `appsettings.Production.json` file and start service using
+```
+dotnet MAT.TAP.AAS.InfluxDb.Writer.Hosting.dll
+```
+
+## Run as a daemon service
+In the release bundle, which you can [download from here](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/sections/115000825753-Downloads), there is a shell script `services/MAT.TAP.AAS.InfluxDb.Writer/daemon_deploy.sh` for daemon service installation. 
 
 Before you run it, execute following commands:
 ```
@@ -65,20 +73,20 @@ Then run:
 ./daemon_deploy.sh
 ```
 
-You can verify it by:
+You can check logs and verify its state with
 
 ```
 journalctl --unit MAT.TAP.AAS.InfluxDb.Writer.Hosting.service --follow -n 100
 ```
 
-or start and stop by 
+and start or stop by 
 
 ```
 sudo systemctl stop MAT.TAP.AAS.InfluxDb.Writer.Hosting.service
 sudo systemctl start MAT.TAP.AAS.InfluxDb.Writer.Hosting.service
 ```
 
-## Service configuration
+## Influx Writer Configuration
 To configure the service, edit
 ```
 /opt/MAT.TAP.AAS.InfluxDb.Writer.Hosting/appsettings.Production.json
@@ -125,15 +133,6 @@ A sample configuration and an explanation of settings is given below.
 | WorkerCount | Max number of concurrent workers per stream. | 5 |
 | BufferSize | Max number of sample messages per stream to buffer before writing to InfluxDb. | 100 |
 | EscapeLineProtocol | Whether to enable line protocol escaping when writing to influx. Suggested to leave false | false |
-
-
-
-## Run as standalone
-
-In order to use InfluxDb writer without running it as a daemon, add the relevant configuration in `appsettings.Production.json` file and start service using
-```
-dotnet MAT.TAP.AAS.InfluxDb.Writer.Hosting.dll
-```
 
 ## Logging
 

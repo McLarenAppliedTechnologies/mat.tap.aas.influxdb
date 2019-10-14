@@ -46,7 +46,7 @@ In the [**Installation**](/docs/Installation.md) section the following propertie
 | name | The friendly name of the topic config |
 | description | Description for humans |
 | sqlConnectionString | Connection string for session metadata relational database |
-| eventTagGroup | The group name used for event tagging for contextual information |
+| eventTagGroup | The event group name used for tagging samples for contextual information |
 | startAutomatically | Whether the topic should be recorded from  automatically without explicit start via API |
 | streamingConfiguration | [Id of the streaming config](#streaming-config). This tells the app what broker it should contact to read from this topic.
 | partitions | Defines what partitions this topic configuration should listen to. If left empty, all partitions will be read, else only specified. Partitions are defined in comma separated list. Example: `"1, 2, 3"`
