@@ -1,10 +1,5 @@
 # ![logo](/docs/branding.png) Telemetry Analytics Data Persistence
 
-### Table of Contents
-- **Introduction**<br>
-- [**Installation**](/docs/Installation.md)<br>
-- [**Seeding Data**](/docs/SeedData.md)<br>
-- [**API**](/docs/API.md)<br>
-- [**Previous Versions**](/docs/PreviousVersions.md)<br>
+We have moved this documentation to the new [Motorsport Telemetry Analytics Platform Documentation](https://github.com/mat-docs/mtap-docs).
 
-Telemetry data and metadata about sessions are saved to various storage implementations such as SqlRace and InfluxDb and relational databases. This documentation discusses saving telemetry data to InfluxDb as time-series data and metadata to MSSQL Server.
+You can find an updated documentation for this service [here](https://github.com/mat-docs/mtap-docs/blob/master/InfluxWriter/README.md).
